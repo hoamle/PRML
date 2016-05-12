@@ -1,2 +1,2 @@
 Helper codes include:
-* `plot_distrib.py`: interactive plots of common probability distributions, with adjustable parameters
+* `ProbDist.py`: interactive plots of common probability distributions, with adjustable parameters
