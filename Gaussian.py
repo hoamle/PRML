@@ -1,21 +1,30 @@
+# from http://matplotlib.org/users/screenshots.html#slider-demo
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider, Button
 from scipy.stats import norm
+import prettyplotlib as ppl
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(1)
 plt.subplots_adjust(left=0.1, bottom=0.25)
 
+# Default parameters of the distribution
 mu, sigma, _, _ = norm.stats(moments='mvsk')
-x = np.linspace(-10, 10, 1000)
 
-line_pdf, = plt.plot(x, norm.pdf(x, mu, sigma), lw=2, color='red')
-line_cdf, = plt.plot(x, norm.cdf(x, mu, sigma), lw=1, color='green')
-plt.axis([-10, 10, 0, 1])
+## Initial plot
+x = np.linspace(-5, 5, 100)
 
+line_pdf, = ppl.plot(ax, x, norm.pdf(x, mu, sigma),
+                     lw=2, color='red', label="pdf")
+line_cdf, = ppl.plot(ax, x, norm.cdf(x, mu, sigma),
+                     lw=1, color='green', label="cdf")
+ppl.legend(ax)
+# plt.axis([-10, 10, 0, 1])
+
+## Updated plot on event
 axcolor = 'lightgoldenrodyellow'
-ax_mu = plt.axes([0.25, 0.1, 0.65, 0.03], axisbg=axcolor)
-ax_sigma = plt.axes([0.25, 0.15, 0.65, 0.03], axisbg=axcolor)
+ax_mu = plt.axes([0.25, 0.15, 0.65, 0.03], axisbg=axcolor, frameon=False)
+ax_sigma = plt.axes([0.25, 0.1, 0.65, 0.03], axisbg=axcolor, frameon=False)
 
 slider_mu = Slider(ax_mu, 'mu', 0.0, 30.0, valinit=mu)
 slider_sigma = Slider(ax_sigma, 'sigma', 0.1, 10.0, valinit=sigma)
