@@ -43,9 +43,11 @@ def plot_distrib(distrib_method_name):
     ax_params = []
     slider_params = []
     for i in range(len(params)):
+        # Create axis for each param
         ax_param = plt.axes([0.25, 0.15 - i * .05, 0.65, 0.03], axisbg=axcolor, frameon=False)
         ax_params.append(ax_param)
 
+        # Create sliders based on param axes
         slider_param = Slider(ax_params[i], 'param ' + str(i + 1), 0.1, 10.0, valinit=params[i])
         slider_params.append(slider_param)
 
